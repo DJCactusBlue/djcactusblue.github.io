@@ -1,0 +1,451 @@
+/**
+* my method
+* *this is comment
+* ! this means something
+* TODO something
+* ? another thing
+*/
+
+/*******************
+/** Global styles **
+/******************/
+/* Color variables */
+:root {
+  --primary-clr: rgb(36, 59, 55);
+  --bar-clr: rgb(224,224,224);
+  --secondary-clr: rgb(243, 238, 105);
+}
+
+/* include the padding and border in an element's total width and height */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Set font size to 10px using 62.5% so we can use rem and multiply by 10 for actual size */
+html {
+  font-size: 62.5%;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+/* Set the body properties */
+body {
+  background: #316154;
+  color: black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Set the container underneath properties to be the correct shize and shape and responsive */
+.body-container {
+  max-width: 1080px;
+  margin: 2px 2px;
+  height: auto;
+  border-radius: 20px; 
+  background-color: white;
+  margin-inline: auto;
+}
+
+/* Set-up the header's grid number of columns and rows and sizes */
+header {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+}
+
+/* Set the banner image properties */
+.round-top-corners-20px {
+  display: block;
+  width: 100%;
+  border-radius: 20px 20px 0px 0px;
+}
+
+/* Set the banner grid placement */
+.banner {
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+/* Set the project title placment and properties */
+.project-title {
+  color: #7f583b;
+  padding: 1.8rem;
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 2/3;  
+}
+
+/* Set-up the middle container's grid number of columns and rows and sizes */
+.grid-container-middle {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(15rem, 1fr));
+  grid-template-rows: auto auto;
+}
+
+/* Set-up the bottom container's grid number of columns and rows and sizes */
+.grid-container-bottom {
+  display: grid;
+  grid-template-columns: 1fr minmax(270px, 840px) minmax(70px, 240px) 1fr;
+  grid-template-rows: auto auto;
+}
+
+/* Set-up the whitespace's grid placement and sizes */
+.whitespace {
+  background-color: white;
+  padding: 2rem 0;
+  display: grid;
+  grid-column: 2/4;
+  grid-row: 1/2;
+}
+
+.social-icon-size {
+  width: 2.8rem;
+}
+
+/* Set social icons positions and spacing */ 
+.footer-social-icons {
+  margin-right: 3rem;
+  justify-content: space-around;
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  grid-column: 3/4;
+  grid-row: 4/5;
+  z-index: 10;
+}
+
+/* Set-up the footer's grid placement and other properties*/
+.footer-copyright {
+  background-color: var(--primary-clr);
+  color: var(--bar-clr);
+  font-size: 1.5rem;
+  text-align: left;
+  padding: 1.2rem 0 1.2rem 5rem;
+  border-radius: 0px 0px 20px 20px;
+  display: grid;
+  grid-column: 2/4;
+  grid-row: 4/5;
+}
+
+/********************
+/** Top Navigation **
+/*******************/
+/* Style the navigation menu */
+.navbar {
+  background-color: rgba(224,224,224,.7);
+  text-align: center;
+  height: 42px;
+  display: flex; 
+  justify-content: space-around; 
+  grid-column: 1/2;
+  grid-row: 1/2;
+  z-index: 10;
+  align-self: end; /* Navigation bar to bottom of grid cell */
+}
+
+/* Navigation links */
+.navbar a {
+  align-content: center;
+  color: var(--primary-clr);
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/*  No bar on top when no hover */
+.navbar a::before {
+  content: '';
+  display: block;
+  height: 5px;
+  background-color: var(--primary-clr);
+  transform: scale(0, 1);
+  transition: transform ease-in-out 250ms;
+}
+
+/* Add a top bar on hover */
+.navbar a:hover::before {
+  transform: scale(1,1);
+}
+
+/* Style the current/active link */
+.navbar a.active {
+  content: '';
+  display: block;
+  height: 5px;
+  background-color: var(--primary-clr);
+}
+
+/*********************
+/** Side Navigation **
+/********************/
+/* The side navigation menu */
+.side-toggle {
+  display: none;
+}
+
+/*  Place the sidebar on the grid and other properties */
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  height: 750px;
+  background-color: var(--bar-clr);
+  border-radius: 0px 10px 10px 0px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  overflow: auto;
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 1/12;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: grid;
+  color: var(--primary-clr);
+  font-size: 1.6rem;
+  text-decoration: none;
+  place-items: center stretch;
+  padding: 1rem 1.2rem;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: rgba(36, 59, 55, .5);
+  transition: background-color ease-in-out 350ms;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  color: white;
+  background-color: var(--primary-clr);
+}
+
+/****************
+/** Image Grid **
+/***************/
+/* Uses middle grid container */
+/* Descriptive text above images */
+.text-above-images {
+  font-size: 1.8rem;
+  padding: 0 2rem;
+  align-self: start;
+  display: grid;
+  grid-column: 1/3;
+  grid-row: 1/2;
+}
+
+.frame-margin {
+  margin: 0 2rem;
+}
+
+/* Set the properties of cards, images and captions */
+/* Portrait aspect ratio */
+.card {
+  margin: 1.2rem;
+  aspect-ratio: 1/1.5;
+}
+
+.card-img {
+  width: 100%;
+  aspect-ratio: 1/1.5;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+/* Landscape aspect ratio */
+.card-landscape {
+  margin: 1.2rem;
+  aspect-ratio: 1.5/1;
+}
+
+.card-img-landscape {
+  width: 100%;
+  aspect-ratio: 1.5/1;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+/* Caption bottom of image */
+figcaption {
+  color: #f2f2f2;
+  background-color: var(--primary-clr);
+  font-size: 1.8rem;
+  align-self: end;
+  border-radius: 0 0 10px 10px;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+/***********************
+/** Responsive layout **
+/**********************/
+@media (max-width: 1080px) {
+  html {
+    font-size: 57.5%;
+  }
+
+  /********************************
+  /** Top Navigation under 1080px **
+  /*******************************/
+  /* Style the navigation menu */
+  .navbar {
+    height: 30px;
+  }
+
+  /* Navigation links */
+  .navbar a {
+    line-height: 1.2;
+  }
+
+  /* Change middle grid container to have one center column */
+  .grid-container-middle {
+    grid-template-columns: repeat(1, minmax(15rem, 1fr));
+  }
+
+  /* Make the sidebar smaller horizontally */
+  .sidebar {
+    width: 150px;
+  }
+
+  /* Change the span of the grid column to fit 2-columns set for images */
+  .text-above-images {
+    grid-column: 1/2;
+  }
+}
+
+/* when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
+@media (max-width: 650px) {
+/* Smaller font size */
+  html {
+    font-size: 52.5%;
+  }
+
+  /*************************************
+  /** Top Navigation Menu under 650px **
+  /************************************/
+  .navbar {   
+    flex-direction: column;
+    position: relative;
+    top: 56px;
+  }
+  
+  /* Navigation links */
+  .navbar a {
+    background: var(--bar-clr);
+    text-decoration: none;
+    font-size: 1.6rem;
+    line-height: 1.4;
+    padding: 5px 0;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+  }
+
+  /* Turn off the ease effects */
+  .navbar a::before {
+    display: none;
+  }
+
+  /* Turn off previous top bar on mouse-over */
+  .navbar a:hover::before {
+    display: none;
+  }
+  
+  /* Add a top bar on mouse-over */
+  .navbar a:hover {
+    background-color: rgba(113, 95, 88, .5);
+    padding: 5px 0;
+  }
+  
+  /* Style the current/active link */
+  .navbar a.active {
+    background-color: var(--primary-clr);
+    color: rgba(224,224,224,1);
+    height: 38px;
+  }
+
+  /* Change middle grid container to have one center column */
+  .grid-container-middle {
+    grid-template-columns: 1fr;
+  }
+
+  /* Set-up the bottom container's grid number of columns and rows and sizes */
+  .grid-container-bottom {
+    grid-template-columns: 1fr minmax(340px, 1080px) 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  /* Adjust project title spacing */
+  .project-title {
+    padding-top: 60px;
+    padding-bottom: 4rem;
+    text-align: center;
+    position: relative;
+    top: 4rem;
+  }
+
+  /* Make the sidebar even smaller horizontally */
+  .sidebar {
+    width: 150px;
+    height: 625px;
+  }
+
+  .sidebar a {
+    padding: .75rem 1.2rem;
+  }
+
+  /**********************
+  /** Image grid small **
+  /*********************/
+  /* Slideshow container */
+  /* Change the span of the text grid column to fit one-column set for images */
+  .text-above-images {
+    grid-column: 1/2;
+  }
+
+  /* Set-up the whitespace's grid placement and sizes */
+  .whitespace {
+    grid-column: 2/3;
+  }
+
+  /* Resize footer for one column */
+  .footer-social-icons {
+    background-color: var(--primary-clr);
+    color: var(--bar-clr);
+    margin-right: 0;
+    height: 50px;
+    padding-top: 18px;
+    justify-content: space-evenly;
+    grid-column: 2/3;
+    grid-row: 2/3;
+  }
+
+  /* Resize footer for one column */
+  .footer-copyright {
+    font-size: 1.5rem;
+    padding: 1rem;
+    text-align: center;
+    grid-column: 2/3;
+    grid-row: 3/4;
+  }
+}
